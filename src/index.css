@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+div#root {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.messageText {
+  position: relative;
+}
+.closeMessage {
+  position: absolute;
+  top:2px;
+  right:10px;
+}
+.closeMessage:hover{
+  text-decoration: none;
+  color: green;
+}
+.closeMessage .euiButton{
+  padding-left: 10px;
+  padding-right: 10px;
+  min-width: auto;
+}
+.messageText > div + .closeMessage {
+    display: block;
+}
+
+.messageText > div:empty + .closeMessage {
+    display: none;
+}
+
+.message .success {
+    padding: 10px;
+    border: 1px solid #09d3ac;
+}
+
+.message .error {
+    padding: 10px;
+    border: 1px solid darkred;
+    color: darkred;
+}
+
+.userRowClass td {
+    padding: 10px;
+}
+
+buton {
+    max-width: 100px;
+}
+
+.euiFormControlLayout #selectPageNumber {
+    max-width: 82px !important;
+}
+
+#selectPageNumber + .euiFormControlLayoutIcons--right {
+    left: 50px;
+    right: auto;
+}
