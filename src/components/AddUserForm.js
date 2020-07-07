@@ -2,7 +2,21 @@ import React, {useState} from "react";
 import {useMutation} from '@apollo/react-hooks';
 
 
-import {EuiButton, EuiFieldText, EuiForm, EuiFormRow, EuiLink, EuiSelect, EuiSpacer, EuiText,EuiPageHeader, EuiPageHeaderSection, EuiTitle } from "@elastic/eui";
+import {EuiButton,
+    EuiFieldText,
+    // EuiForm,
+    EuiFormRow,
+    EuiSelect,
+    EuiSpacer,
+    // EuiText,
+    EuiPageHeader,
+    EuiPageHeaderSection,
+    EuiTitle,
+    EuiFlexGroup,
+    EuiFlexItem,
+    // EuiFieldNumber,
+   }
+    from "@elastic/eui";
 import {ADD_USER, GET_USERS} from "./UserMutations";
 
 export default function AddUserForm({params}) {
@@ -37,72 +51,77 @@ export default function AddUserForm({params}) {
         <React.Fragment>
             <EuiPageHeader>
                 <EuiPageHeaderSection>
-                    <EuiTitle>
-                        <h3>Add User</h3>
+                    <EuiTitle size="s">
+                        <h5>Add New User</h5>
                     </EuiTitle>
                 </EuiPageHeaderSection>
             </EuiPageHeader>
             <hr/>
-            <EuiForm>
-                <EuiSpacer/>
-                <EuiFormRow label="User name">
-                    <EuiFieldText name="name"
-                                  value={name || ''}
-                                  onChange={(e) => setName(e.target.value)}/>
-                </EuiFormRow>
-                <EuiFormRow
-                    label="Email" helpText="Add a unique email address">
-                    <EuiFieldText
-                        name="email"
-                        value={email || ''}
-                        onChange={(e) => setEmail(e.target.value)}/>
-                </EuiFormRow>
-                <EuiFormRow
-                    label="Status"
-                    labelAppend={
-                        <EuiText size="xs">
-                            <EuiLink>User status</EuiLink>
-                        </EuiText>
-                    }>
-                    <EuiSelect
-                        hasNoInitialSelection
-                        name="status"
-                        options={[
-                            {value: ' ', text: 'Choose Option'},
-                            {value: 'Active', text: 'Active'},
-                            {value: 'Inactive', text: 'Inactive'},
-                        ]}
-                        value={status || ' '}
-                        onChange={(e) => setStatus(e.target.value)}/>
-                </EuiFormRow>
-                <EuiSpacer/>
+            <EuiSpacer/>
+            <EuiFlexGroup>
+                <EuiFlexItem style={{ maxWidth: 300 }}>
+                    <EuiFormRow label="User name*">
+                        <EuiFieldText name="name"
+                                      value={name || ''}
+                                      onChange={(e) => setName(e.target.value)}/>
+                    </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem  style={{ maxWidth: 300 }}>
+                    <EuiFormRow
+                        label="Email*">
+                        <EuiFieldText
+                            name="email"
+                            value={email || ''}
+                            onChange={(e) => setEmail(e.target.value)}/>
+                    </EuiFormRow>
+                </EuiFlexItem>
+                <EuiFlexItem  grow={false} style={{ width: 100 }}>
+                    <EuiFormRow
+                        label="Status*">
+                        <EuiSelect
+                            hasNoInitialSelection
+                            name="status"
+                            options={[
+                                {value: ' ', text: 'Choose Option'},
+                                {value: 'Active', text: 'Active'},
+                                {value: 'Inactive', text: 'Inactive'},
+                            ]}
+                            value={status || ' '}
+                            onChange={(e) => setStatus(e.target.value)}/>
+                    </EuiFormRow>
+                </EuiFlexItem>
 
-                <EuiButton type="button" onClick={e => {
-                    e.preventDefault();
-                    if (name !== '' && email !== '' && status !== ' ') {
-                        params.resetPageFields();
-                        createUser()
-                            .then((response) => {
-                                // update global message notification
+                <EuiFlexItem grow={false}>
+                    <EuiFormRow hasEmptyLabelSpace display="center">
+                        <EuiButton type="button" onClick={e => {
+                            e.preventDefault();
+                            if (name !== '' && email !== '' && status !== ' ') {
+                                params.resetPageFields();
+                                createUser()
+                                    .then((response) => {
+                                        // update global message notification
+                                        params.setMessage({
+                                            type: 'success',
+                                            text: 'User added!'
+                                        });
+                                        clearForm();
+                                        return;
+                                    });
+                            } else {
                                 params.setMessage({
-                                    type: 'success',
-                                    text: 'User added!'
+                                    type: 'error',
+                                    text: 'All fields are required!'
                                 });
-                                clearForm();
-                                return;
-                            });
-                    } else {
-                        params.setMessage({
-                            type: 'error',
-                            text: 'All fields are required!'
-                        });
-                    }
-                }}>
-                    Add User
-                </EuiButton>
-                <EuiSpacer/>
-            </EuiForm>
+                            }
+                        }}>
+                            Save
+                        </EuiButton>
+                    </EuiFormRow>
+                </EuiFlexItem>
+            </EuiFlexGroup>
+            <EuiSpacer/>
             <hr/>
+
         </React.Fragment>
     );
 }

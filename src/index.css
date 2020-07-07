@@ -18,21 +18,25 @@ div#root {
     padding: 20px;
 }
 .messageText {
-  position: relative;
+    position: relative;
+    margin-top: 15px;
+    max-width: 300px;
+
 }
 .closeMessage {
-  position: absolute;
-  top:2px;
-  right:10px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
 }
 .closeMessage:hover{
-  text-decoration: none;
-  color: green;
+    text-decoration: none;
+    color: green;
 }
 .closeMessage .euiButton{
-  padding-left: 10px;
-  padding-right: 10px;
-  min-width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: auto;
 }
 .messageText > div + .closeMessage {
     display: block;
@@ -43,22 +47,23 @@ div#root {
 }
 
 .message .success {
-    padding: 10px;
+    padding: 15px 10px;
     border: 1px solid #09d3ac;
 }
 
 .message .error {
-    padding: 10px;
+    padding: 15px 10px;
     border: 1px solid darkred;
     color: darkred;
 }
 
 .userRowClass td {
-    padding: 10px;
+    padding: 10px 10px 10px 0;
 }
 
-buton {
+button {
     max-width: 100px;
+    display: block;
 }
 
 .euiFormControlLayout #selectPageNumber {

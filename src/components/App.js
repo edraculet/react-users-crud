@@ -19,7 +19,7 @@ export  default function App(){
                 <EuiPageHeader>
                     <EuiPageHeaderSection>
                         <EuiTitle size="l">
-                            <h1>Users List</h1>
+                            <h1>Users Management</h1>
                         </EuiTitle>
                     </EuiPageHeaderSection>
                 </EuiPageHeader>

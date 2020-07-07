@@ -1,10 +1,15 @@
 # Users management app using React & GraphQL
 
-## How it works
-...
+## What it does
+The app is managing a users list by providing functionalities such as creating, listing, updating and deleting users.
 
-## Docker setup
-...
+## How it works
+From the top form add / edit users information.
+From the listing table select action buttons to start editing or deleting an user.
+
+Columns ***Name*** and ***Status*** can be used to sort the table.
+
+Default list sorting is alphabetically, A-Z.
 
 ### Start environment
 ```ssh

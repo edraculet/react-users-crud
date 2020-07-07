@@ -21,7 +21,7 @@ export default function UserTable() {
     // pagination fields
     const [pageIndex, setPageIndex] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(3);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
     const [message, setMessage] = useState({});
 
     // sorting fields
@@ -90,7 +90,7 @@ export default function UserTable() {
             direction: sortDirection,
         },
     };
-    // building table colimns
+    // building table columns
     const columns = [
         {
             field: 'name',
@@ -99,7 +99,7 @@ export default function UserTable() {
             'data-test-subj': 'nameCell',
         },
         {
-            field: 'email',
+           field: 'email',
             name: 'Email',
             render: email => (
                 <EuiLink href="mailto:{email}" target="_blank">
@@ -131,25 +131,27 @@ export default function UserTable() {
                                 setName(user.name);
                                 setEmail(user.email);
                                 setStatus(user.status);
+                                window.scrollTo(0,0);
                             }}>
                         Edit
                     </button>
                     &nbsp; &nbsp; &nbsp;
 
                     {/*delete user button*/}
-                    <button type="button" fill className="euiButton euiButton--danger danger"
-                            onClick={
-                                e => {
-                                    onDeleteHandler({variables: {id: user.id}}).then((response) => {
-                                        console.log(user.id, response);
-                                        // update global message notification
-                                        setMessage({
-                                            type: 'success',
-                                            text: 'User deleted!'
+                    <button type="button"  className="euiButton euiButton--danger danger"
+                            onClick={() => {
+                                if (window.confirm('Are you sure you want to delete '+ user.name + '"?')) {
+                                        onDeleteHandler({variables: {id: user.id}}).then((response) => {
+                                            // update global message notification
+                                            setMessage({
+                                                type: 'success',
+                                                text: 'User deleted!'
+                                            });
+                                            return id;
                                         });
-                                        return id;
-                                    });
-                                }}
+                                }
+                            }}
+
                             color="danger">
                         Delete
                     </button>
@@ -227,7 +229,6 @@ export default function UserTable() {
                 </EuiFormLabel>
             </EuiFlexItem>
 
-            <Pagination pagination={paginationArgs}/>
             <EuiSpacer size="xl"/>
             <EuiBasicTable
                 items={data.allUsers.nodes || []}

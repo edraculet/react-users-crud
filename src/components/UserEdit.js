@@ -28,7 +28,7 @@ export default function UserEdit(params) {
             <EuiPageHeader>
                 <EuiPageHeaderSection>
                     <EuiTitle>
-                        <h3>Edit #{id}</h3>
+                        <h3><strong>Edit #{name}</strong></h3>
                     </EuiTitle>
                 </EuiPageHeaderSection>
             </EuiPageHeader>
@@ -48,7 +48,7 @@ export default function UserEdit(params) {
                 </EuiFormRow>
 
                 <EuiFormRow
-                    label="Email" helpText="Add a unique email address">
+                    label="Email*">
                     <EuiFieldText
                         name="email"
                         value={params.params.email || ''}
@@ -58,7 +58,7 @@ export default function UserEdit(params) {
                     label="Status"
                     labelAppend={
                         <EuiText size="xs">
-                            <EuiLink>User status</EuiLink>
+                            User status
                         </EuiText>
                     }>
                     <EuiSelect
