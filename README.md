@@ -17,6 +17,7 @@ docker-compose up -d
 ```
 
 #### Login with credentials
+Open browser to `http://localhost:3000/` and use the below username / password to login
 ```
 admin@test.com / password
 ```
