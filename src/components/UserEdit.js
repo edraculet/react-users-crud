@@ -3,12 +3,12 @@ import {useMutation} from '@apollo/react-hooks';
 import {EuiButton, EuiFieldText, EuiForm, EuiFormRow, EuiLink, EuiSelect, EuiSpacer, EuiText,EuiPageHeader, EuiPageHeaderSection, EuiTitle } from "@elastic/eui";
 import {EDIT_USER, GET_USERS} from "./UserMutations";
 
-export default function UserEdit(params) {
+export default function UserEdit({params}) {
 
-    const id = params.params.id || null;
-    const name = params.params.name || '';
-    const email = params.params.email || '';
-    const status = params.params.status || '';
+    const id = params.id || null;
+    const name = params.name || '';
+    const email = params.email || '';
+    const status = params.status || '';
     const [updateUser, {loading, error}] = useMutation(
         EDIT_USER, {
             variables: {id, name, email, status},
@@ -43,16 +43,16 @@ export default function UserEdit(params) {
 
                 <EuiFormRow label="User name">
                     <EuiFieldText name="name"
-                                  value={params.params.name || ''}
-                                  onChange={(e) => params.params.setName(e.target.value)}/>
+                                  value={params.name || ''}
+                                  onChange={(e) => params.setName(e.target.value)}/>
                 </EuiFormRow>
 
                 <EuiFormRow
                     label="Email*">
                     <EuiFieldText
                         name="email"
-                        value={params.params.email || ''}
-                        onChange={(e) => params.params.setEmail(e.target.value)}/>
+                        value={params.email || ''}
+                        onChange={(e) => params.setEmail(e.target.value)}/>
                 </EuiFormRow>
                 <EuiFormRow
                     label="Status"
@@ -69,27 +69,27 @@ export default function UserEdit(params) {
                             {value: 'Active', text: 'Active'},
                             {value: 'Inactive', text: 'Inactive'},
                         ]}
-                        value={params.params.status || ' '}
-                        onChange={(e) => params.params.setStatus(e.target.value)}/>
+                        value={params.status || ' '}
+                        onChange={(e) => params.setStatus(e.target.value)}/>
                 </EuiFormRow>
                 <EuiSpacer/>
 
                 <EuiButton type="button" fill onClick={e => {
                     e.preventDefault();
-                    if (params.params.name !== '' && params.params.email !== '' && params.params.status !== ' ') {
+                    if (params.name !== '' && params.email !== '' && params.status !== ' ') {
                         updateUser()
                             .then((response) => {
                                 // update global message notification
-                                params.params.setMessage({
+                                params.setMessage({
                                     type: 'success',
                                     text: 'User updated!'
                                 });
-                                params.params.setEditID(null);
+                                params.setEditID(null);
                                 return;
                             });
                     } else {
-                        params.params.setMessage({
-                            type: 'error',
+                        params.setMessage({
+                            type: 'danger',
                             text: 'All fields are required!'
                         });
                     }
@@ -100,7 +100,7 @@ export default function UserEdit(params) {
                 <EuiText size="s">
                     <EuiLink onClick={e => {
                         e.preventDefault();
-                        params.params.setEditID(null);
+                        params.setEditID(null);
                     }}>Cancel</EuiLink>
                 </EuiText>
 

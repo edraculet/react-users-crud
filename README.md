@@ -16,12 +16,18 @@ Default list sorting is alphabetically, A-Z.
 docker-compose up -d
 ```
 
+#### Login with credentials
+```
+admin@test.com / password
+```
+
+
 ### Stop environment
 ```ssh
 docker-compose down
 ```
 
-### Login to nodejs container
+### Login to nodejs container (dev only)
 ```ssh
 docker exec -it graph-react sh 
 ```

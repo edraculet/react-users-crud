@@ -4,6 +4,9 @@ import {GET_USERS, DELETE_USER} from "./UserMutations";
 import AddUserForm from "./AddUserForm";
 import Messages from "./Messages";
 import Pagination from "./Pagination";
+import Header from "./Header";
+import UserEdit from "./UserEdit";
+
 import {
     EuiBasicTable,
     EuiLink,
@@ -14,9 +17,8 @@ import {
     EuiFormLabel,
     EuiSelect
 } from '@elastic/eui';
-import UserEdit from "./UserEdit";
 
-export default function UserTable() {
+export default function UserTable(props) {
 
     // pagination fields
     const [pageIndex, setPageIndex] = useState(0);
@@ -140,7 +142,7 @@ export default function UserTable() {
                     {/*delete user button*/}
                     <button type="button"  className="euiButton euiButton--danger danger"
                             onClick={() => {
-                                if (window.confirm('Are you sure you want to delete '+ user.name + '"?')) {
+                                if (window.confirm('Are you sure you want to delete "'+ user.name + '"?')) {
                                         onDeleteHandler({variables: {id: user.id}}).then((response) => {
                                             // update global message notification
                                             setMessage({
@@ -196,6 +198,7 @@ export default function UserTable() {
     };
     return (
         <React.Fragment>
+            <Header props={props}/>
             {
                 editUser
                     ?

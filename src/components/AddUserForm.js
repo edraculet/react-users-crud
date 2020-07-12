@@ -4,17 +4,14 @@ import {useMutation} from '@apollo/react-hooks';
 
 import {EuiButton,
     EuiFieldText,
-    // EuiForm,
     EuiFormRow,
     EuiSelect,
     EuiSpacer,
-    // EuiText,
     EuiPageHeader,
     EuiPageHeaderSection,
     EuiTitle,
     EuiFlexGroup,
     EuiFlexItem,
-    // EuiFieldNumber,
    }
     from "@elastic/eui";
 import {ADD_USER, GET_USERS} from "./UserMutations";
@@ -109,7 +106,7 @@ export default function AddUserForm({params}) {
                                     });
                             } else {
                                 params.setMessage({
-                                    type: 'error',
+                                    type: 'danger',
                                     text: 'All fields are required!'
                                 });
                             }

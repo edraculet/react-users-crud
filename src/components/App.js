@@ -1,5 +1,9 @@
 import React from 'react'
-import UserTable from './UserTable'
+import UserTable from './UserTable';
+import Login from './Login';
+import {  Router, Route, Switch, Redirect } from 'react-router-dom';
+import { PrivateRoute } from './PrivateRoute';
+import { history } from '../_helpers';
 
 import {
     EuiPage,
@@ -24,7 +28,13 @@ export  default function App(){
                     </EuiPageHeaderSection>
                 </EuiPageHeader>
                 <EuiPageContent>
-                    <UserTable/>
+                    <Router history={history}>
+                        <Switch>
+                            <PrivateRoute exact path="/" component={UserTable} />
+                            <Route path="/login" component={Login} />
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </Router>
                 </EuiPageContent>
             </EuiPageBody>
         </EuiPage>
